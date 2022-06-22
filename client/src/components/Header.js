@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['INICIO', 'PLANES', 'SERVICIOS', 'SERVICIOS', 'CONTACTO', 'SOBRE NOSOTROS', 'GALERÍA'];
+const pages = ['INICIO', 'PLANES', 'SERVICIOS', 'CONTACTO', 'SOBRE NOSOTROS', 'GALERÍA'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -70,7 +70,7 @@ const ResponsiveAppBar = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon style={{ color: "#5B5B5B"}}/>
             </IconButton>
             <Menu
               className="header"
@@ -118,21 +118,34 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, padding: "0px 24px", fontSize: "16" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, padding: "0px 40px", fontSize: "16" }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#5B5B5B', display: 'block' }}
+                sx={{ my: 2, color: '#5B5B5B', display: 'block', padding: "0px 24px" }}
               >
                 {page}
               </Button>
             ))}
+            <Button
+                sx={{ my: 2, color: '#50007F', display: 'block', padding: "0px 100px"}}
+            >
+              REGISTRARSE
+            </Button>
+
+            <Button
+              variant="outlined"
+              color="secondary"
+              sx={{ my: 1, color: '#50007F', display: 'block', padding: "0px 16px", borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+            >
+              INGRESAR
+            </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0}}>
                {/*  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
               </IconButton>
             </Tooltip>
