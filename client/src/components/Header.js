@@ -92,11 +92,30 @@ const ResponsiveAppBar = () => {
               }}
              
             >
+
+           
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
+                  
                 </MenuItem>
               ))}
+              <MenuItem>
+                <Button
+                  sx={{ my: 2, color: '#50007F',}}
+                >
+                  REGISTRARSE
+                </Button>
+              </MenuItem>
+              <MenuItem>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+                >
+                  INGRESAR
+                </Button>
+              </MenuItem>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -128,19 +147,7 @@ const ResponsiveAppBar = () => {
                 {page}
               </Button>
             ))}
-            <Button
-                sx={{ my: 2, color: '#50007F', display: 'block', padding: "0px 100px"}}
-            >
-              REGISTRARSE
-            </Button>
-
-            <Button
-              variant="outlined"
-              color="secondary"
-              sx={{ my: 1, color: '#50007F', display: 'block', padding: "0px 16px", borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
-            >
-              INGRESAR
-            </Button>
+           
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
