@@ -1,8 +1,9 @@
+const bcrypt = require("bcrypt");
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
 
-exports.create = (req, res) => {
+exports.createUser = async (req, res) => {
     // Validate request
     if (!req.body.first_name && !req.body.last_name && !req.body.email && !req.body.password) {
       res.status(400).send({
@@ -10,8 +11,10 @@ exports.create = (req, res) => {
       });
       return;
     }
+    
+
+    const salt = await bcrypt.genSalt(10);
   
-   
     const users = {
         first_name: req.body.first_name,
         middle_name: req.body.middle_name,
@@ -21,12 +24,11 @@ exports.create = (req, res) => {
         document_number: req.body.document_number,
         birth_date: req.body.birth_date,
         email: req.body.email,
-        password: req.body.password,
+        password:  await bcrypt.hash(req.body.password, salt),
         has_membership: req.body.has_membership ? req.body.has_membership : false
     };
 
-
-    User.create(users)
+    await User.create(users)
     .then(data => {
         res.send(data);
        
@@ -34,13 +36,13 @@ exports.create = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while creating the Tutorial."
+            err.message || "Some error occurred while creating the User."
         });
       });
   };
   
- 
-  exports.findAll = (req, res) => {
+
+  exports.findAllUsers = (req, res) => {
     const name = req.query.first_name;
     var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
   
@@ -57,7 +59,7 @@ exports.create = (req, res) => {
   };
   
   // Find a single User with an id
-  exports.findOne = (req, res) => {
+  exports.findOneUser = (req, res) => {
     const id = req.params.id;
   
     User.findByPk(id)
@@ -78,7 +80,7 @@ exports.create = (req, res) => {
   };
   
   // Update a User by the id in the request
-  exports.update = (req, res) => {
+  exports.updateUser = (req, res) => {
     const id = req.params.id;
   
     User.update(req.body, {
@@ -103,7 +105,7 @@ exports.create = (req, res) => {
   };
   
   // Delete a User with the specified id in the request
-  exports.delete = (req, res) => {
+  exports.deleteUser = (req, res) => {
     const id = req.params.id;
   
     User.destroy({
@@ -128,7 +130,7 @@ exports.create = (req, res) => {
   };
   
   // Delete all Users from the database.
-  exports.deleteAll = (req, res) => {
+  exports.deleteAllUsers = (req, res) => {
     User.destroy({
       where: {},
       truncate: false
@@ -144,7 +146,7 @@ exports.create = (req, res) => {
       });
   };
   
-  exports.findAllPublished = (req, res) => {
+  exports.findAllMembership = (req, res) => {
     User.findAll({ where: { has_membership: true } })
       .then(data => {
         res.send(data);
