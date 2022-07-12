@@ -21,7 +21,7 @@ function App() {
         <Router>
           <ResponsiveAppBar />
             <Routes>
-              <Route path="/login" exact element={<Register />} />
+              <Route path="/sign-up" exact element={<Register />} />
   
             </Routes>
         </Router>
