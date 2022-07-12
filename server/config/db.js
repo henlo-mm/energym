@@ -3,7 +3,7 @@ const dbConfig = require("../config/db.config.js");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "1234",
+  password: "123",
   port: 5432
 };
 pgtools.createdb(config, "energymdb", function(err, res) {

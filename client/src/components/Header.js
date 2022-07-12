@@ -147,8 +147,26 @@ const ResponsiveAppBar = () => {
                 {page}
               </Button>
             ))}
+             <MenuItem>
+                <Button
+                  sx={{ my: 2, color: '#50007F',}}
+                >
+                  REGISTRARSE
+                </Button>
+              </MenuItem>
+              <MenuItem>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  href="/sign-up"
+                  sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+                >
+                  INGRESAR
+                </Button>
+              </MenuItem>
            
           </Box>
+          
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
