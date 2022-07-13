@@ -1,7 +1,5 @@
-import React, { useState, useEffect  } from 'react'
-import { useForm, useFieldArray, Controller } from "react-hook-form";
-import { styled } from '@mui/material/styles';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import React from 'react'
+import { useForm} from "react-hook-form";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -16,51 +14,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ErrorMessage } from "@hookform/error-message";
 
-const theme = createTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            fontSize: '1rem',
-            backgroundColor: '#50007F', 
-            marginLeft: '27px', 
-           
-            '&:hover': {
-              backgroundColor: '#8812CE' 
-            },
-          },
-        },
-      },
-    },
-  });
-  
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  
-  color: theme.palette.text.secondary,
-  width: '100%',
-  height: '100%',
-  textAlign: 'center',
-  marginTop: '150px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const Item2 = styled(Paper)(({ }) => ({
-  backgroundColor: '#50007F',
-  width: '100%',
-  height: '100%',
-  textAlign: 'center',
-  marginTop: '150px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  
-}));
 
 const currencies = [
   {
@@ -85,7 +38,7 @@ export default function Register() {
     reset,
     formState,
     formState: { errors },
-    formState: { isSubmitSuccessful }
+    getValues
   } = useForm({
       defaultValues: {
       id: null,
@@ -101,6 +54,7 @@ export default function Register() {
       birth_date: new Date()
     }
   });
+ 
   const [submittedData, setSubmittedData] = React.useState({});
 
   const [birth_date, setStartDate] = React.useState(null);
@@ -108,7 +62,7 @@ export default function Register() {
   const onSubmit = (data) => {
 
     setSubmittedData(data);
-      var data = {
+      var datas = {
         first_name: data.first_name,
         middle_name: data.middle_name, 
         last_name: data.last_name,
@@ -120,7 +74,7 @@ export default function Register() {
         password: data.password,
       };
      
-      UserDataService.create(data)
+      UserDataService.create(datas)
         .then(response => {
           handleSubmit({
             id: response.data.id,
@@ -162,19 +116,19 @@ export default function Register() {
 return (
       <Container fixed>
           <Box sx={{ flexGrow: 1 }}>
-              <Grid container xs={12} spacing={2}>
+              <Grid container item xs={12} spacing={2}>
                   <Grid item xs={5}>
-                      <Item2>
+                      <Paper className="paper2">
                           <Box
                               component="img"
                               className="img"
                               alt="The house from the offer."
                               src={require('../resources/images/register.png')}
                           />
-                      </Item2>
+                      </Paper>
                   </Grid>
                   <Grid item xs={6}  style={{  paddingLeft: "0px" }}>
-                      <Item>
+                      <Paper className="paper">
                           <div>
                               <h1>Crear cuenta</h1>
                           </div>
@@ -182,12 +136,12 @@ return (
                               component="form"
                               onSubmit={handleSubmit(onSubmit)}
                               sx={{
-                                  '& .MuiTextField-root': { m: 1, width: '30ch', marginLeft: 4}, 
+                                  '& .MuiTextField-root': { m: 1, width: '30ch', marginLeft: 1}, 
                               }}
   
                           >
-                              <Grid container xs={12}>
-                                  <Grid item>
+                              <Grid container>
+                                  <Grid item xs={6}>
                                       <TextField
                                           className="inputRounded"
                                           label="Primer nombre"
@@ -203,7 +157,7 @@ return (
                                   
                                   </Grid>
   
-                                  <Grid item>
+                                  <Grid item xs={6}>
                                       <TextField
                                           className="inputRounded"
                                           label="Segundo nombre"
@@ -218,11 +172,8 @@ return (
                                       />
                                   </Grid>
                               </Grid>
-  
-                              <Grid container xs={12}>
-                              
-                                  <Grid item>
-                                  
+                              <Grid container>
+                                  <Grid item xs={6}>
                                       <TextField
                                           className="inputRounded"
                                           label="Primer apellido"
@@ -237,7 +188,7 @@ return (
                                       />
                                   
                                   </Grid>
-                                  <Grid item>
+                                  <Grid item xs={6}>
                                       <TextField
                                           className="inputRounded"
                                           label="Segundo apellido"
@@ -252,10 +203,11 @@ return (
                                       />
                                   </Grid>
                               </Grid>
-                              <Grid container xs={12}>
-                                  <Grid item>
+                              <Grid container>
+                                  <Grid item xs={6}>
                                       <TextField
-                                         select
+                                          fullWidth
+                                          select
                                           className="inputRounded"
                                           label="Tipo de documento"
                                           size="small"
@@ -271,7 +223,7 @@ return (
                                    
                                       </TextField>
                                   </Grid>
-                                  <Grid item>
+                                  <Grid item xs={6}>
                                       <TextField
                                           className="inputRounded"
                                           label="Número de documento"
@@ -287,7 +239,7 @@ return (
                                       />
                                   </Grid> 
                               </Grid>
-                              <Grid container xs={12}>
+                              <Grid container >
                                 <Grid item>
                                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                                   
@@ -300,35 +252,45 @@ return (
                                           onChange= {(newValue) => {
                                             setStartDate(newValue);
                                           }}       
-                                          renderInput={(params) => <TextField fullWidth={true} size="small"  className="inputRounded" {...params} />}
+                                          renderInput={(params) => <TextField fullWidth size="small"  className="inputRounded" {...params} />}
                                       />
                                   
                                   </LocalizationProvider>
                                 </Grid>
                               
                               </Grid>
-                              <Grid container xs={12}>
+                              <Grid container>
                               
                                   <Grid item>
                                       <TextField
-                                          className="inputRounded"
+                                          className="inputRounded inputFull"
                                           label="Correo electrónico"
+                                          fullWidth
                                           size="small"
                                           name="email"
-                                          {...register("email",  { required: 'Este campo es requerido'})}
+                                          {...register("email",  { required: 'Este campo es requerido',  pattern: {
+                                            value: /\S+@\S+\.\S+/,
+                                            message: "El valor introducido no coincide con el formato del correo"
+                                          }})}
                                         
-                                      />
+                                      >
+                                        </TextField>
+                                        <span>
+
+                                          <ErrorMessage
+                                            errors={errors}
+                                            name="email"
+                                            render={({ message }) => <p>{message}</p>}
+                                          />
+
+                                        </span>
+                                     
                                       
-                                      <ErrorMessage
-                                        errors={errors}
-                                        name="email"
-                                        render={({ message }) => <p>{message}</p>}
-                                      />
       
                                                                         
                                   </Grid>                          
                               </Grid>
-                              <Grid container xs={12}>
+                              <Grid container>
                                 
                                 <Grid item>
                                     <TextField
@@ -340,22 +302,22 @@ return (
                                         name="password"
                                         {...register("password", {
                                           required: 'Este campo es requerido',
-                                          minLength: 8,
+                                          minLength: {
+                                            value: 8,
+                                          message: "Debe tener al menos 8 caracteres"
+                                        },
                                           maxLength: 50,
                                        //   pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&^_-]{8,}$/
                                         })}
                                     />
                                      <ErrorMessage
                                         errors={errors}
-                                        name="passwords"
+                                        name="password"
                                         render={({ message }) => <p>{message}</p>}
                                       />
-                                   
-                            
                                 </Grid>
                               </Grid>
-                              <Grid container xs={12}>
-                              
+                              <Grid container>
                                 <Grid item>
                                     <TextField
                                         className="inputRounded"
@@ -364,29 +326,33 @@ return (
                                         autoComplete="current-password"
                                         size="small"
                                         name="confirm_password"
-                                        {...register("confirm_password")}
-                                        
-                                     
-                                       // onChange={(e) => setregister({...register, confirm_password: e.target.value})}
+                                        {...register("confirm_password", {
+                                          validate: value =>
+                                            value === getValues('password') || "Las contraseñas no coinciden"
+                                        })
+                                      }
+                                    />
+                                    <ErrorMessage
+                                        errors={errors}
+                                        name="confirm_password"
+                                        render={({ message }) => <p>{message}</p>}
                                     />
                                 </Grid>                       
                               </Grid>
-                              <Grid container xs={12}>
-                              
+                              <Grid container>
                                   <Grid item sx={{ m: 1 }}>
-                                      <ThemeProvider theme={theme}>
-                                          <Button 
-                                            variant="contained"
-                                            type='submit'   
-                                           
-                                          > 
-                                            REGISTRARSE 
-                                          </Button>                         
-                                      </ThemeProvider>
+                                        <Button
+                                          className="button"
+                                          variant="contained"
+                                          type='submit'   
+                                          
+                                        > 
+                                          REGISTRARSE 
+                                        </Button>                         
                                   </Grid>
                               </Grid>
                           </Box>
-                      </Item>
+                      </Paper>
                   </Grid>
               </Grid>
           </Box>

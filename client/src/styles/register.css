@@ -3,10 +3,41 @@
     font-weight: 400;
 }
 .inputFull .MuiOutlinedInput-root {
-    width: 55ch !important;
+    width: 100%!important;
    
 }
+.button  {
+    font-size: 1rem;
+    background-color: #50007F!important; 
+    margin-left: 28px!important;
+}
+.button:hover {
+    background-color:#8812CE;
+}
 
+.paper {
+    background-color: #fff!important;
+    width: 100%!important;
+    height: 85%!important;
+    text-align: center!important;
+    margin-top: 150px!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.12)!important;
+}
+.paper2 {
+    background-color: #50007F!important;
+    width: 100%!important;
+    height: 85%!important;
+    text-align: center!important;
+    margin-top: 150px!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
 .img {
     height: 350px;
     width: 350px;
@@ -22,7 +53,7 @@ p {
   }
   
 p::before {
-display: inline;
-content: "⚠ ";
+    display: inline;
+    content: "⚠ ";
 }
   
