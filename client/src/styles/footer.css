@@ -1,0 +1,30 @@
+.footer {
+    background-color: #F9F9F9;
+    position: relative!important;
+    box-shadow: 0px 10px 10px 10px rgba(0,0,0,0.12)!important;
+    color: #5B5B5B;
+    margin-top: 50px;
+}
+
+.copyrigth {
+    justify-content: center!important;
+    background-color: #ECECEC;
+    height: 100%;
+    width: 100%;
+}
+.copyrigth-txt {
+    text-align: center;
+    color: #5B5B5B;
+    font-weight: 600;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+   
+}
+
+.logo {
+    justify-content: center!important;
+    align-items: center!important;
+}

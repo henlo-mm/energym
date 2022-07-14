@@ -149,7 +149,8 @@ const ResponsiveAppBar = () => {
             ))}
              <MenuItem>
                 <Button
-                  sx={{ my: 2, color: '#50007F',}}
+                  sx={{ my: 2, color: '#50007F'}}
+                  href="/sign-up"
                 >
                   REGISTRARSE
                 </Button>
@@ -158,7 +159,7 @@ const ResponsiveAppBar = () => {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  href="/sign-up"
+                  href="/login"
                   sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
                 >
                   INGRESAR

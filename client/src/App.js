@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import ResponsiveAppBar from "./components/Header";
 import Register from './components/Register';
+import Login from './components/Login';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -22,8 +24,9 @@ function App() {
           <ResponsiveAppBar />
             <Routes>
               <Route path="/sign-up" exact element={<Register />} />
-  
+              <Route path="/login" exact element={<Login />} />
             </Routes>
+            <Footer />
         </Router>
     );
 };
