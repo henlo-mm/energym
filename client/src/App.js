@@ -21,12 +21,16 @@ function App() {
 
     return (
         <Router>
-          <ResponsiveAppBar />
-            <Routes>
-              <Route path="/sign-up" exact element={<Register />} />
-              <Route path="/login" exact element={<Login />} />
-            </Routes>
-            <Footer />
+          <div className='page-container'>
+            <div className='content-wrapper'>
+              <ResponsiveAppBar />
+              <Routes>
+                <Route path="/sign-up" exact element={<Register />} />
+                <Route path="/login" exact element={<Login />} />
+              </Routes>
+            </div>
+              <Footer />
+          </div>
         </Router>
     );
 };

@@ -1,8 +1,10 @@
+.container {
+    position: relative!important;
+}
 .half {
     background-color:#50007F!important;
     height: 90.3vh;
     width: 100vh;
-    
 }
 
 .imgs {

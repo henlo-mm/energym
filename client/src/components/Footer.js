@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 
 export default function Footer() {
   return (
-    <div>
+   
         <Grid container className="footer">
             <Grid item >
                 <List style={{ marginTop: `auto` }} >
@@ -117,6 +117,6 @@ export default function Footer() {
                 <p  className="copyrigth-txt">© 2022, EnergymPoint</p>
             </Grid>
         </Grid>
-    </div>
+
   )
 }

@@ -28,6 +28,16 @@
   color: #61dafb;
 }
 
+.page-container {
+  display: flex!important;
+  flex-flow: column nowrap!important;
+  height: 100vh!important; 
+  
+}
+.content-wrapper {
+  flex: 1!important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
