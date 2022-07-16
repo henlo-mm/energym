@@ -1,21 +1,31 @@
+const users = require("../controllers/users.controller.js");
+const { authJwt } = require("../middleware");
+
 module.exports = app => {
-    const users = require("../controllers/users.controller.js");
-  
-    var router = require("express").Router();
-  
-    router.post("/", users.createUser);
-  
-    router.get("/", users.findAllUsers);
-  
-    router.get("/published", users.findAllMembership);
-  
-    router.get("/:id", users.findOneUser);
-  
-    router.put("/:id", users.updateUser);
-  
-    router.delete("/:id", users.deleteUser);
-  
-    router.delete("/", users.deleteAllUsers);
-  
-    app.use("/api/users", router);
+    
+  app.use(function(req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, Content-Type, Accept"
+    );
+    next();
+  });
+
+  app.get("/api/test/all", users.allAccess);
+
+  app.get("/api/test/user",
+    [authJwt.verifyToken],
+   users.userBoard
+  );
+
+  app.get("/api/test/mod",
+    [authJwt.verifyToken, authJwt.isModerator],
+   users.moderatorBoard
+  );
+
+  app.get("/api/test/admin",
+    [authJwt.verifyToken, authJwt.isAdmin],
+   users.adminBoard
+  );
+
   };

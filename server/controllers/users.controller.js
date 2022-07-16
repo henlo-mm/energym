@@ -1,47 +1,10 @@
-const bcrypt = require("bcrypt");
-const db = require("../models");
+
+/* const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
+ */
 
-exports.createUser = async (req, res) => {
-    // Validate request
-    if (!req.body.first_name && !req.body.last_name && !req.body.email && !req.body.password) {
-      res.status(400).send({
-        message: "Content can not be empty!"
-      });
-      return;
-    }
-    
-
-    const salt = await bcrypt.genSalt(10);
-  
-    const users = {
-        first_name: req.body.first_name,
-        middle_name: req.body.middle_name,
-        last_name: req.body.last_name,
-        second_last_name: req.body.second_last_name,
-        document_type: req.body.document_type,
-        document_number: req.body.document_number,
-        birth_date: req.body.birth_date,
-        email: req.body.email,
-        password:  await bcrypt.hash(req.body.password, salt),
-        has_membership: req.body.has_membership ? req.body.has_membership : false
-    };
-
-    await User.create(users)
-    .then(data => {
-        res.send(data);
-       
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the User."
-        });
-      });
-  };
-  
-
+/* 
   exports.findAllUsers = (req, res) => {
     const name = req.query.first_name;
     var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
@@ -157,4 +120,21 @@ exports.createUser = async (req, res) => {
             err.message || "Some error occurred while retrieving Users."
         });
       });
+  };
+ */
+
+  exports.allAccess = (req, res) => {
+    res.status(200).send("Public Content.");
+  };
+  
+  exports.userBoard = (req, res) => {
+    res.status(200).send("User Content.");
+  };
+  
+  exports.adminBoard = (req, res) => {
+    res.status(200).send("Admin Content.");
+  };
+  
+  exports.moderatorBoard = (req, res) => {
+    res.status(200).send("Moderator Content.");
   };

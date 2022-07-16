@@ -1,4 +1,5 @@
 import React from 'react'
+import { useForm, Controller } from "react-hook-form";
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -9,7 +10,47 @@ import CardContent from '@mui/material/CardContent';
 import '../styles/login.css';
 import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
+
+import AuthUser from "../services/auth.service";
+
 export default function Login() {
+
+    const {
+        register, 
+        handleSubmit,
+        reset,
+        formState,
+      } = useForm({
+          defaultValues: {
+          email: "",
+          password: "",
+        }
+      });
+
+    const { errors } = formState;
+
+    function onSubmit(data) {
+
+        var datas = {
+            email: data.email,
+            password: data.password,
+        };
+        console.log(data)
+
+        return AuthUser.login(datas)
+            .then(response => {
+            
+                handleSubmit({
+                    email: response.data.email,
+                    password: response.data.password,
+                
+                });
+                console.log(response)
+            })
+            .catch(e => {
+                console.log(e)
+            });
+    }
   return (
     <Container className="container"> 
         <Grid container direction={ 'column' } >
@@ -34,7 +75,8 @@ export default function Login() {
                                 >
                                 </CardHeader>
                                 <CardContent>
-                                    <Box 
+                                    <Box
+                                        onSubmit={handleSubmit(onSubmit)}
                                         component="form"
                                         sx={{
                                             '& .MuiTextField-root': { m: 1}, 
@@ -42,10 +84,11 @@ export default function Login() {
                                     >
                                         <Grid>
                                             <TextField        
-                                                label="Usuario"
+                                                label="Correo"
                                                 size="small"
-                                                name="user"
+                                                name="email"
                                                 fullWidth
+                                                {...register("email")}
                                             />
                                         </Grid>
                                         <Grid>
@@ -54,6 +97,7 @@ export default function Login() {
                                                 label="Contraseña"
                                                 size="small"                                   
                                                 name="password"
+                                                {...register("password")}
                                             />
                                             <p className="text2">Recuperar contraseña</p>
                                         </Grid>

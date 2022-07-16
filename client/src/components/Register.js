@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm} from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import '../styles/register.css';
-import UserDataService from "../services/user.service";
+import AuthUser from "../services/auth.service";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -42,7 +42,7 @@ export default function Register() {
     formState,
     formState: { errors },
     getValues,
-    setValue
+    control
   } = useForm({
       defaultValues: {
       id: null,
@@ -55,13 +55,12 @@ export default function Register() {
       email: "",
       password: "",
       confirm_password: "",
-      birth_date: new Date()
+      birth_date: ""
     }
   });
  
   const [submittedData, setSubmittedData] = React.useState({});
 
-  const [date, setStartDate] = React.useState(null);
 
   const onSubmit = (data) => {
 
@@ -78,7 +77,7 @@ export default function Register() {
         password: data.password,
       };
      
-      UserDataService.create(datas)
+      AuthUser.create(datas)
         .then(response => {
           handleSubmit({
             id: response.data.id,
@@ -111,13 +110,13 @@ export default function Register() {
         document_type: "",
         document_number: "",
         birth_date: "",
-        date: "",
         email: "",
         password: "",
         confirm_password: ""
       });
     }
   }, [formState, submittedData, reset]);
+  console.log(getValues())
 
 
 return (
@@ -240,20 +239,29 @@ return (
                             render={({ message }) => <p className="danger">{message}</p>}
                           />
                         </Grid>
-                        <Grid>
+                        <Grid>    
                           <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <DatePicker
-                                disableFuture
-                                label="Fecha de nacimiento"
-                                openTo="year"
-                                views={['year', 'month', 'day']}
-                                value={date}                       
-                                onChange= {(date) => {
-                                  setStartDate(date);
-                                  setValue(...register("birth_date", date,  {shouldValidate: true, shouldDirty: true}))
-                                }}
-                                renderInput={(params) => <TextField fullWidth size="small"  className="inputRounded" {...params} />}
+                          <Controller
+                              name="birth_date"
+                              control={control}
+                              defaultValue={new Date()}
+                              render={({ field: { ref, ...rest } }) => (
+                                <DatePicker
+                                  disableFuture
+                                  label="Fecha de nacimiento"
+                                  openTo="year"
+                                 
+                                  views={['year', 'month', 'day']}
+                                  
+                                 
+                                  {...register("birth_date")}
+                                  renderInput={(params) => <TextField fullWidth size="small"  className="inputRounded" {...params} />}
+                                  {...rest}
                             />
+                              )}
+                            />
+                            
+                            
                           </LocalizationProvider>
                         </Grid>            
                         <Grid>
