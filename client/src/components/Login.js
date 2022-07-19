@@ -1,5 +1,6 @@
 import React from 'react'
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import {useNavigate} from 'react-router-dom'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -10,24 +11,21 @@ import CardContent from '@mui/material/CardContent';
 import '../styles/login.css';
 import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
+import { FaLock } from "react-icons/fa";
+
 
 import AuthUser from "../services/auth.service";
 
 export default function Login() {
 
-    const {
-        register, 
-        handleSubmit,
-        reset,
-        formState,
-      } = useForm({
+    const { register, handleSubmit } = useForm({
           defaultValues: {
           email: "",
           password: "",
         }
-      });
+    });
 
-    const { errors } = formState;
+    const navigate = useNavigate();
 
     function onSubmit(data) {
 
@@ -99,7 +97,11 @@ export default function Login() {
                                                 name="password"
                                                 {...register("password")}
                                             />
-                                            <p className="text2">Recuperar contraseña</p>
+                                            <p className="text2"> 
+                                            <FaLock />
+                                           
+                                            Recuperar contraseña
+                                            </p>
                                         </Grid>
                                         <Grid>
                                             <Button

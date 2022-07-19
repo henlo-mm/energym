@@ -2,7 +2,7 @@
     position: relative!important;
 }
 .half {
-    background-color:#50007F!important;
+    /* background-color:#50007F!important; */
     height: 90.3vh;
     width: 100vh;
 }
@@ -19,7 +19,7 @@
 
 .paper2s {
     background-color: #fff!important;
-    width: 80%!important;
+    width: 90%!important;
     height: 75%!important;
     text-align: center!important;
     margin-top: 100px!important;
@@ -28,12 +28,12 @@
     flex-direction: column!important;
     align-items: center!important;
     justify-content: center!important;
-    box-shadow: none!important;
+    box-shadow:  0px  4.5px 4.5px rgba(0,0,0,0.12)!important;
 }
 
 .papers {
     background-color: #fff!important;
-    width: 80%!important;
+    width: 90%!important;
     height: 75%!important;
     text-align: center!important;
     margin-top: 100px!important;
@@ -42,7 +42,7 @@
     flex-direction: column!important;
     align-items: center!important;
     justify-content: center!important;
-    box-shadow:  0px 1.5px 1.5px 1.5px rgba(0,0,0,0.12)!important;
+    box-shadow:  0px 3.5px 3.5px rgba(0,0,0,0.12)!important;
 }
 
 .button2  {
@@ -56,7 +56,7 @@
 }
 
 .card {
-    box-shadow: none!important;
+    box-shadow:  0px 1.5px 1.5px 1.5px rgba(0,0,0,0.12)!important;
 }
 .txt {
     font-size: 12px;
@@ -66,7 +66,7 @@
     font-size: 12px;
     font-weight: 700!important;
     text-align: right;
-
+    margin-left: 6px;
 }
 .title .css-1qvr50w-MuiTypography-root {
     color:#5B5B5B!important;

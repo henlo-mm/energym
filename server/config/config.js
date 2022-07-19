@@ -2,7 +2,7 @@ require('dotenv').config();
 const { DB_HOST, DB_USERNAME, DB_PASSWORD } = process.env;
 module.exports = {
   "development": {
-    "username": DB_USERNAME, 
+    "username": "DB_USERNAME", 
     "password": DB_PASSWORD, 
     "database": "energymdb", 
     "host": DB_HOST,

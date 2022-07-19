@@ -213,7 +213,8 @@ return (
                           <TextField
                               select
                               fullWidth
-                              className="inputRounded"
+                              defaultValue=""
+                              
                               label="Tipo de documento"
                               size="small"
                               name="document_type"
@@ -246,21 +247,18 @@ return (
                               control={control}
                               defaultValue={new Date()}
                               render={({ field: { ref, ...rest } }) => (
-                                <DatePicker
-                                  disableFuture
-                                  label="Fecha de nacimiento"
-                                  openTo="year"
-                                 
-                                  views={['year', 'month', 'day']}
-                                  
-                                 
-                                  {...register("birth_date")}
-                                  renderInput={(params) => <TextField fullWidth size="small"  className="inputRounded" {...params} />}
-                                  {...rest}
-                            />
+                                  <DatePicker
+                                    disableFuture
+                                    label="Fecha de nacimiento"
+                                    openTo="year"
+                                    views={['year', 'month', 'day']}
+                                    {...register("birth_date")}
+                                    renderInput={(params) => <TextField fullWidth size="small"  {...params}
+                                  />}
+                                  {...rest} 
+                              />
                               )}
                             />
-                            
                             
                           </LocalizationProvider>
                         </Grid>            

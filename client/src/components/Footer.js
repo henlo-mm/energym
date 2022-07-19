@@ -3,12 +3,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import '../styles/footer.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter, faYoutube, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons'
-import Avatar from '@mui/material/Avatar';
+import { faTwitter, faYoutube, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
   return (
