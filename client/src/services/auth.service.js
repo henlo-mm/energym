@@ -7,16 +7,30 @@ class AuthUser {
 
     login (data) {
         return http.post("/auth/signin", data)
-           /*  .then((response) => {
+        /* .then((response) => {
+                console.log(response.data.token)
             if (response.data.token) {
-                localStorage.setItem("user", JSON.stringify(response.data));
+                localStorage.setItem("token", JSON.stringify(response.data));
             }
         return response.data;
         }); */
     };
 
     logout  () {
-        localStorage.removeItem("user");
+        
+        localStorage.removeItem("token");
+    };
+    getCurrentUser () {
+        const userStr = localStorage.getItem("token");
+        
+       /*  if (userStr){
+            return userStr;
+
+        }else {
+            return null;
+        }
+       */
+        
     };
 
 }
