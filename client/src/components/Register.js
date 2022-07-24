@@ -16,6 +16,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import { Link } from '@mui/material';
 
 
 const currencies = [
@@ -338,7 +339,8 @@ return (
                             fullWidth   
                           > 
                             REGISTRARSE 
-                          </Button>                         
+                          </Button>      
+                          <p className="txt">O también puedes <Link className="tx" href="/login">Iniciar sesión</Link></p>                   
                         </Grid>
                       </Box>
                     </CardContent>

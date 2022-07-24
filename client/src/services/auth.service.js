@@ -7,21 +7,21 @@ class AuthUser {
 
     login (data) {
         return http.post("/auth/signin", data)
-        /* .then((response) => {
-                console.log(response.data.token)
+        .then((response) => {
+           console.log(response.data)
             if (response.data.token) {
-                localStorage.setItem("token", JSON.stringify(response.data));
+                localStorage.setItem("token", response.data.token);
             }
         return response.data;
-        }); */
+        });
     };
 
-    logout  () {
+    logout () {
         
         localStorage.removeItem("token");
     };
     getCurrentUser () {
-        const userStr = localStorage.getItem("token");
+        return localStorage.getItem("token");
         
        /*  if (userStr){
             return userStr;

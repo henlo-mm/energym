@@ -1,10 +1,8 @@
 .container {
     position: relative!important;
 }
-.half {
-    /* background-color:#50007F!important; */
-    height: 90.3vh;
-    width: 100vh;
+.input {
+    text-align: center!important;
 }
 
 .imgs {
@@ -28,7 +26,8 @@
     flex-direction: column!important;
     align-items: center!important;
     justify-content: center!important;
-    box-shadow:  0px  4.5px 4.5px rgba(0,0,0,0.12)!important;
+    border-radius: 2px!important;
+    box-shadow: 1px 0px 2px 2px rgba(0,0,0,0.12)!important;
 }
 
 .papers {
@@ -42,7 +41,8 @@
     flex-direction: column!important;
     align-items: center!important;
     justify-content: center!important;
-    box-shadow:  0px 3.5px 3.5px rgba(0,0,0,0.12)!important;
+    border-radius: 2px!important;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.12)!important;
 }
 
 .button2  {
@@ -57,6 +57,7 @@
 
 .card {
     box-shadow:  0px 1.5px 1.5px 1.5px rgba(0,0,0,0.12)!important;
+    
 }
 .txt {
     font-size: 12px;

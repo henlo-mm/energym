@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import { FaLock } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthUser from "../services/auth.service";
+import Link from '@mui/material/Link';
 
 export default function Login() {
    
@@ -27,60 +28,48 @@ export default function Login() {
     });
 
     const navigate = useNavigate();
-
+    
 
     function onSubmit(data) {
 
-        var datas = {
+        const user = {
             email: data.email,
             password: data.password,
         };
 
-        return AuthUser.login(datas)
+        AuthUser.login(user)
             .then(response => {
             
                 handleSubmit({
-                    email: response.data.email,
-                    password: response.data.password,
-                
+                    user
                 });
-                
-                console.log(response)
-                let status = response.status;
-                let role = response.data.roles;
-                let token = response.data.token;
-               
-               
-              
-                if (status === 200 &&  role.toString() === "ROLE_USER") {
-                    toast.success("login Successfully", {
+            
+                let role = response.roles;
+                //let token = response.token;
+                if (role.toString() === "ROLE_USER") {
+
+                    /* toast.success("login Successfully", {
                         position: toast.POSITION.TOP_CENTER
-                    });
-                    localStorage.setItem('token', token);
-                  //  localStorage.setItem('token', token); 
+                    }); */
+                   // localStorage.setItem('token', token);
+                  
                     navigate("/user");
                     
-                }else if(status === 200 && role === "employee"){
+                }else if(role.toString() === "ROLE_ADMIN"){
 
-                    /*  localStorage.setItem('token', token);
-                    navigate("/employee"); */
-                } else if(status === 200 && role === "publisher"){
-    
-                    /*  localStorage.setItem('token', token);
-                    navigate("/publisher"); */
                 }else{
                     console.log(":(")
                    
-            }
+            }     
     
-        })
-            .catch(e => {
+        }).catch(e => {
                 console.log(e)
                 toast.error("Ha ocurrido un error.", {
                     position: toast.POSITION.TOP_CENTER
                 });
             });
     }
+   
   return (
     <Container className="container"> 
         <Grid container direction={ 'column' } >
@@ -97,8 +86,7 @@ export default function Login() {
                         </Paper>
                     </Grid>
                     <Grid item xs={ 6 } style={{ width: '100%' }}>
-                        <Paper className="papers">
-                            
+                        <Paper className="papers"> 
                             <Card className="card">
                                 <CardHeader
                                     className="title"
@@ -110,11 +98,13 @@ export default function Login() {
                                         onSubmit={handleSubmit(onSubmit)}
                                         component="form"
                                         sx={{
-                                            '& .MuiTextField-root': { m: 1}, 
+                                            '& .MuiTextField-root': { m: 1 }, 
                                         }}
+                                       
                                     >
                                         <Grid>
-                                            <TextField        
+                                            <TextField  
+                                                type="email"     
                                                 label="Correo"
                                                 size="small"
                                                 name="email"
@@ -126,15 +116,17 @@ export default function Login() {
                                             <TextField
                                                 fullWidth                                    
                                                 label="Contraseña"
-                                                size="small"                                   
+                                                size="small"        
+                                                type="password"
+                                                      
                                                 name="password"
                                                 {...register("password")}
                                             />
-                                            <p className="text2"> 
+                                            {/* <p className="text2"> 
                                             <FaLock />
                                            
                                             Recuperar contraseña
-                                            </p>
+                                            </p> */}
                                         </Grid>
                                         <Grid>
                                             <Button
@@ -145,7 +137,7 @@ export default function Login() {
                                             > 
                                                 INICIAR SESIÓN 
                                             </Button> 
-                                            <p className="txt">¿No tienes una cuenta? <span className="tx">Registrarse</span></p>     
+                                            <p className="txt">¿No tienes una cuenta? <Link className="tx" href="/sign-up">Registrarse</Link></p>     
                                         </Grid>
                                     </Box>
                                 </CardContent>   

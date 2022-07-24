@@ -1,15 +1,10 @@
 import React from 'react'
-import AuthUser from "../services/auth.service";
-function AdminBoard() {
-    const logOut = () => {
-        console.log(localStorage.getItem("token"))
-        AuthUser.logout();
-        
-      };
-  return (
-    <div>AdminBoard
+import Dashboard from './Dashboard';
 
-        <button onClick={logOut}>f</button>
+function AdminBoard() {
+  return (
+    <div>
+      <Dashboard />
     </div>
   )
 }
