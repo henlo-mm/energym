@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['INICIO', 'PLANES', 'SERVICIOS', 'CONTACTO', 'SOBRE NOSOTROS', 'GALERÍA'];
+/* const pages = ['INICIO', 'PLANES', 'SERVICIOS', 'CONTACTO', 'SOBRE NOSOTROS', 'GALERÍA']; */
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -36,152 +36,177 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar  style={{
-        backgroundColor: "#ffffff",
-        
-    }}   position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#5B5B5B',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+    <Container maxWidth="xl" sx={{ padding: '0!important' }}>
+      <AppBar style={{ backgroundColor: "#ffffff"}}   position="sticky">
+        <Container maxWidth="lg">
+          <Toolbar disableGutters>
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <IconButton sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+              <img
+                  className="logo-icon"
+                  src={require('../resources/images/riendo.png')} 
+              />
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon style={{ color: "#5B5B5B"}}/>
             </IconButton>
-            <Menu
-              className="header"
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: '#5B5B5B',
+                textDecoration: 'none',
               }}
-             
             >
+              ENERGYM POINT
+            </Typography>
 
-           
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                  
-                </MenuItem>
-              ))}
-              <MenuItem>
-                <Button
-                  sx={{ my: 2, color: '#50007F',}}
-                >
-                  REGISTRARSE
-                </Button>
-              </MenuItem>
-              <MenuItem>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
-                >
-                  INGRESAR
-                </Button>
-              </MenuItem>
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#5B5B5B',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, padding: "0px 40px", fontSize: "16" }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#5B5B5B', display: 'block', padding: "0px 24px" }}
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                {page}
-              </Button>
-            ))}
-           
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0}}>
-               {/*  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                <MenuIcon style={{ color: "#5B5B5B"}}/>
               </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem sx={{ marginRight: '20' }} key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              <Menu
+                className="header"
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              
+              >
+
+            {/* 
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                    
+                  </MenuItem>
+                ))} */}
+                <MenuItem>
+                  <Button
+                    sx={{ my: 2, color: '#50007F',}}
+                  >
+                    REGISTRARSE
+                  </Button>
                 </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                <MenuItem>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+                  >
+                    INGRESAR
+                  </Button>
+                </MenuItem>
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: '#5B5B5B',
+                textDecoration: 'none',
+              }}
+            >
+              LOGO
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'flex-end'}, padding: "0px 40px", fontSize: "16" }}>
+              {/* {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: '#5B5B5B', display: 'block', padding: "0px 24px" }}
+                >
+                  {page}
+                </Button>
+              ))} */}
+              <MenuItem>
+                  <Button
+                    sx={{ my: 2, color: '#50007F'}}
+                    href="/sign-up"
+                  >
+                    REGISTRARSE
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    href="/login"
+                    sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+                  >
+                    INGRESAR
+                  </Button>
+                </MenuItem>
+            
+            </Box>
+            
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0}}>
+                {/*  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem sx={{ marginRight: '20' }} key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </Container>
   );
 };
 export default ResponsiveAppBar;

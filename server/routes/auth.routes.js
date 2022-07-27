@@ -1,9 +1,25 @@
+const auth = require("../controllers/auth.controller.js");
+const { verifySignUp } = require("../middleware");
 module.exports = app => {
-    const auth = require("../controllers/auth.controller.js");
+    
+    app.use(function(req, res, next) {
+      res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, Content-Type, Accept"
+      );
+      next();
+    });
   
-    var router = require("express").Router();
+    app.post(
+      "/api/auth/signup",
+      [
+        verifySignUp.checkDuplicateUsernameOrEmail,
+        verifySignUp.checkRolesExisted
+      ],
+      auth.signUp
+    );
   
-    router.post("/", auth.login);
+    app.post("/api/auth/signin", auth.login);
   
-    app.use("/api/login", router);
+    /* app.post("/api/auth/signout", auth.signout); */
   };

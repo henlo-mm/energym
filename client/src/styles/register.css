@@ -1,0 +1,87 @@
+.container-register {
+    background-color: rgb(104 104 104 /6%)!important;
+    height: 100vh!important;
+}
+.button  {
+    font-size: 1rem;
+    background-color: #50007F!important; 
+    margin-top: 10px!important;
+}
+.button:hover {
+    background-color:#8812CE;
+}
+.img {
+    height: 350px;
+    width: 350px;
+    justify-content: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.paper {
+    background-color: #fff!important;
+    width: 100%!important;
+    height: 100%!important;
+    text-align: center!important;
+    margin-top: 50px!important;
+    margin-right: auto!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+    box-shadow:  0px 1.5px 1.5px 1.5px rgba(0,0,0,0.12)!important;
+}
+.paper2 {
+    background-color: #50007F!important;
+    width: 100%!important;
+    height: 100%!important;
+    text-align: center!important;
+    margin-top: 50px!important;
+    display: flex!important;
+    flex-direction: column!important;
+    align-items: center!important;
+    justify-content: center!important;
+    box-shadow:  0px 1.5px 1.5px 1.5px rgba(0,0,0,0.12)!important;
+}
+
+.danger {
+    color: #bf1650;
+}
+  
+.danger::before {
+    display: inline;
+    content: "⚠ ";
+}
+  
+.cards {
+    box-shadow: none!important;
+}
+.txt {
+    font-size: 12px;
+}
+.text2 {
+    color:#50007F!important;
+    font-size: 12px;
+    font-weight: 700!important;
+    text-align: right;
+
+}
+.title2 .css-1qvr50w-MuiTypography-root {
+    color:#5B5B5B!important;
+    font-weight: 700!important;
+
+}
+
+.tx {
+    color:#50007F!important;
+    font-size: 12px;
+    font-weight: 700!important;
+
+}
+.input-r {
+    margin-top: 0px!important;
+    margin-bottom: 0px!important;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+}
