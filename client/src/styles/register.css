@@ -1,6 +1,11 @@
+.container-register {
+    background-color: rgb(104 104 104 /6%)!important;
+    height: 100vh!important;
+}
 .button  {
     font-size: 1rem;
     background-color: #50007F!important; 
+    margin-top: 10px!important;
 }
 .button:hover {
     background-color:#8812CE;
@@ -73,4 +78,10 @@
     font-size: 12px;
     font-weight: 700!important;
 
+}
+.input-r {
+    margin-top: 0px!important;
+    margin-bottom: 0px!important;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
 }

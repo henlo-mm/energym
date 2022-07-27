@@ -21,5 +21,5 @@ module.exports = app => {
   
     app.post("/api/auth/signin", auth.login);
   
-    //app.post("/api/auth/signout", auth.signout);
+    /* app.post("/api/auth/signout", auth.signout); */
   };

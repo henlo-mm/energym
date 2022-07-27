@@ -23,7 +23,7 @@ export default function Footer() {
                                     className="icon"
                                     src={require('../resources/images/riendo.png')} 
                                 />
-                        </ListItemButton>
+                            </ListItemButton>
                         </ListItem>
                         <ListItem>
                             <ListItemButton>

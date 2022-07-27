@@ -121,7 +121,7 @@ export default function Register() {
 
 
 return (
-  <Container className='container'> 
+  <Container className='container-register' maxWidth="xl"> 
       <Grid container direction={ 'column' }>
         <Grid item>         
             <Grid container>
@@ -151,9 +151,9 @@ return (
                             '& .MuiTextField-root': { m: 1}, 
                         }}
                       >
-                        <Grid>
+                        <Grid className="input-r">
                           <TextField
-                            className="inputRounded"
+                           
                             label="Primer nombre"
                             fullWidth
                             size="small"
@@ -167,7 +167,7 @@ return (
                           />
                           <TextField
                             fullWidth
-                            className="inputRounded"
+                           
                             label="Segundo nombre"
                             size="small"
                             {...register("middle_name", { required: 'Este campo es requerido'})}
@@ -180,9 +180,9 @@ return (
                           />
                         </Grid>
                      
-                        <Grid>
+                        <Grid className="input-r">
                           <TextField
-                            className="inputRounded"
+                            c
                             label="Primer apellido"
                             size="small"
                             fullWidth
@@ -195,7 +195,7 @@ return (
                             render={({ message }) => <p className="danger">{message}</p>}
                           />
                           <TextField
-                            className="inputRounded"
+                           
                             label="Segundo apellido"
                             size="small"
                             fullWidth
@@ -210,7 +210,7 @@ return (
                         
                         </Grid>
                         
-                        <Grid>
+                        <Grid className="input-r">
                           <TextField
                               select
                               fullWidth
@@ -241,7 +241,7 @@ return (
                             render={({ message }) => <p className="danger">{message}</p>}
                           />
                         </Grid>
-                        <Grid>    
+                        <Grid className="input-r">    
                           <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <Controller
                               name="birth_date"
@@ -263,8 +263,9 @@ return (
                             
                           </LocalizationProvider>
                         </Grid>            
-                        <Grid>
+                        <Grid >
                           <TextField
+                            type="email"
                             label="Correo electrónico"
                             fullWidth
                             size="small"
@@ -283,7 +284,7 @@ return (
                             />
                                                      
                         </Grid>                          
-                        <Grid>
+                        <Grid className="input-r">
                           <TextField
                             className="inputRounded"
                             label="Contraseña"

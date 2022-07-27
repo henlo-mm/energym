@@ -1,0 +1,12 @@
+.login-button {
+    color: #50007F!important;
+    border-radius: 20px!important;
+    border-color: #50007F!important;
+    border-width: 2px!important;
+    margin-left: auto!important;
+    padding-right: 10!important;
+}
+
+.login-button:hover {
+    border: 1px solid #50007F!important;
+}
