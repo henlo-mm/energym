@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER
     },
     birth_date: {
-      type: Sequelize.DATE
+      type: Sequelize.DATEONLY
     },
     email: {
       type: Sequelize.STRING
@@ -29,7 +29,16 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     has_membership: {
-      type: Sequelize.BOOLEAN
+      type: Sequelize.BOOLEAN,
+      allowNull: true
+    },
+    salary: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    contract_type: {
+      type: Sequelize.STRING,
+      allowNull: true
     }
   });
   return User;
