@@ -46,22 +46,16 @@ export default function Login() {
                 });
             
                 let role = response.roles;
-                //let token = response.token;
-                if (role.toString() === "ROLE_USER") {
-
-                    /* toast.success("login Successfully", {
-                        position: toast.POSITION.TOP_CENTER
-                    }); */
-                   // localStorage.setItem('token', token);
-                  
+               
+                if (role === 1) {         
                     navigate("/user");
-                    
-                }else if(role.toString() === "ROLE_ADMIN"){
+                }else if(role === 3){
+                    navigate("/admin");
 
                 }else{
                     console.log(":(")
                    
-            }     
+            }    
     
         }).catch(e => {
                 console.log(e)

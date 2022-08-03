@@ -28,10 +28,6 @@ module.exports = (sequelize, Sequelize) => {
       password: {
         type: Sequelize.STRING
       },
-      has_membership: {
-        type: Sequelize.BOOLEAN,
-        allowNull: true
-      },
       salary: {
         type: Sequelize.STRING,
         
