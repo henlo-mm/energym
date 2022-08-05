@@ -40,6 +40,10 @@ app.get("/api", (req, res) => {
 
 require("./routes/user.routes")(app);
 require("./routes/auth.routes")(app);
+require("./routes/exercise-type.routes")(app);
+require("./routes/exercise.routes")(app);
+require("./routes/set.routes")(app);
+require("./routes/instructor.routes")(app);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

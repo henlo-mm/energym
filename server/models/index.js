@@ -25,6 +25,7 @@ db.set = require("../models/set.model.js")(sequelize, Sequelize);
 db.exercise = require("../models/exercise.model.js")(sequelize, Sequelize);
 db.exercise_type = require("../models/exercise-type.model.js")(sequelize, Sequelize);
 
+
 /* db.role.belongsToMany(db.users, {
   through: "id",
   foreignKey: "user_id",
@@ -39,6 +40,21 @@ db.users.belongsTo(db.role, {
 
 });
 
+db.instructor.belongsTo(db.role, {
+  as: 'Role',
+  through: "id",
+  foreignKey: "role_id",
+});
+
+/* db.instructor.sync({ force: true }) */
+
+db.exercise.belongsTo(db.exercise_type, {
+  as: 'Type',
+  through: "exercise_type",
+  foreignKey: "exercise_type_id",
+});
+
+  
 db.user_type.hasOne(db.users, {
   through: "id",
   foreignKey: "user_type_id",
@@ -46,27 +62,22 @@ db.user_type.hasOne(db.users, {
 
 
 db.set.belongsTo(db.users, {
+  as: 'User',
   through: "id",
   foreignKey: "user_id",
 });
 
 db.set.belongsTo(db.instructor, {
+  as: 'Instructor',
   through: "id",
   foreignKey: "instructor_id",
 });
   
 db.set.belongsTo(db.exercise, {
+  as: 'Exercise',
   through: "id",
   foreignKey: "exercise_id",
 });
 
-db.exercise.belongsTo(db.exercise_type, {
-  through: "id",
-  foreignKey: "exercise_type_id",
-});
-  
-/* db.ROLES = ["user", "instructor", "admin"]; */
-
-//db.ROLES = ["user", "instructor", "admin"];
 
 module.exports = db;
