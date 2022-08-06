@@ -25,7 +25,7 @@ function App() {
           <div className='page-container'>
             <div className='content-wrapper'>
               <Routes>
-              <Route path="/" element={<SidebarLayout/>}>
+                <Route path="/" element={<SidebarLayout/>}>
                   <Route path="/sign-up" element={<Register />} />
                   <Route path="/login" element={<Login />} /> 
                 </Route>

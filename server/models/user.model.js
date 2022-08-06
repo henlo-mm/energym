@@ -31,6 +31,12 @@ module.exports = (sequelize, Sequelize) => {
     has_membership: {
       type: Sequelize.BOOLEAN,
       allowNull: true
+    },
+    salary: {
+      type: Sequelize.STRING,
+    },
+    contract_type: {
+      type: Sequelize.STRING,
     }
   });
   return User;

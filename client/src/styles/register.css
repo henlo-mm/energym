@@ -85,3 +85,15 @@
     padding-left: 20px!important;
     padding-right: 20px!important;
 }
+
+.main-text-2 {
+    color: #FFFFFF!important;
+    font-size: 24px;
+    padding: 40px!important;
+}
+.secondary-text-register {
+    color: #FFFFFF!important;
+    font-size: 18px;
+    justify-content: center!important;
+    
+}

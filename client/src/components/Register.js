@@ -128,6 +128,8 @@ return (
                       alt="The house from the offer."
                       src={require('../resources/images/register.png')}
                   />
+                  <h4 className="main-text-2">REGISTRARSE EN ENERGYM POINT</h4>
+                  <p className="secondary-text-register">Rellene todos los campos del formulario con la información solicitada para habilitar el siguiente paso y continuar con el proceso de registro</p>
                 </Paper>
               </Grid>
               <Grid item xs={6}  style={{ width: '100%' }}>
