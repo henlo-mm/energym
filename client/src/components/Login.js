@@ -29,7 +29,6 @@ export default function Login() {
     });
 
     const navigate = useNavigate();
-    
 
     function onSubmit(data) {
 
@@ -45,10 +44,13 @@ export default function Login() {
                     user
                 });
             
-                let role = response.roles;
+                let role = response.role;
                
                 if (role === 1) {         
                     navigate("/user");
+                }else if(role === 2){
+                    navigate("/admin");
+
                 }else if(role === 3){
                     navigate("/admin");
 

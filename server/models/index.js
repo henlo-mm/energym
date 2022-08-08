@@ -83,5 +83,5 @@ db.set.belongsTo(db.exercise, {
   foreignKey: "exercise_id",
 });
 
-db.users.sync({ force: true })
+/* db.users.sync({ force: true }) */
 module.exports = db;

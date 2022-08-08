@@ -81,12 +81,13 @@ exports.signUp = async (req, res) => {
         return res.status(200).send({
           id: user.id,
           email: user.email,
-          roles: role.id,
+          role: role.id,
           token: token,
         });
       } catch (error) {
         return res.status(500).send({ message: error.message });
       }
+      
       
   };
 

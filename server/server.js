@@ -44,6 +44,7 @@ require("./routes/exercise-type.routes")(app);
 require("./routes/exercise.routes")(app);
 require("./routes/set.routes")(app);
 require("./routes/instructor.routes")(app);
+require("./routes/home.routes")(app);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
