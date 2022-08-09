@@ -47,9 +47,9 @@ const AdminBoard = () => {
 
 
   return (
-    <div>
-      <AppBar className='app-bar' position="static">
-        <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ padding: '0!important' }}>
+      <AppBar style={{ backgroundColor: "#ffffff"}}   position="sticky">
+        <Container maxWidth="lg">
           <Toolbar disableGutters>
             <IconButton sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
               <img
@@ -112,7 +112,7 @@ const AdminBoard = () => {
                 ))} */}
 
                 <MenuItem>
-                <Button className="items" href="/admin/user">
+                <Button className="items" href="/admin/user/list">
                   USUARIOS
                 </Button>
               </MenuItem>
@@ -160,7 +160,7 @@ const AdminBoard = () => {
                 </Button>
               ))} */}
               <MenuItem>
-                <Button className="items"  href="/admin/user">
+                <Button className="items"  href="/admin/user/list">
                   USUARIOS
                 </Button>
               </MenuItem>
@@ -209,25 +209,9 @@ const AdminBoard = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      {/* <Grid container>
-        <Container maxWidth="xl" className="container-login" > 
-          <Grid container>
-              <Grid 
-                item 
-                align="center" 
-                xs={ 12 }
-              > 
-                <Box
-                  component="img"
-                  className="img-admin"
-                  alt="The house from the offer."
-                  src={require('../resources/images/coaches.png')}
-                /> 
-              </Grid>        
-          </Grid>
-        </Container>
-      </Grid> */}
-    </div>
+    </Container>
+    
+    
   );
 };
 export default AdminBoard;

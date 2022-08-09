@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes as Rout, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import ResponsiveAppBar from "./components/Header";
@@ -7,7 +7,6 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
-import AdminBoard from './components/AdminBoard';
 import SidebarLayout from './components/SidebarLayout';
 import UserBoard from './components/UserBoard';
 import AuthUser from "./services/auth.service";
@@ -16,7 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import EventBus from "./common/EventBus";
 import ProtectedRoute from './components/ProtectedRoute';
 import ListUser from './components/ListUser';
-import Routes from './routes';
+import SidebarAdmin from './components/SidebarAdmin';
+import UserList from './components/UserList';
+
 
 function App() {
 
@@ -26,40 +27,42 @@ function App() {
           <ToastContainer />
           <div className='page-container'>
             <div className='content-wrapper'>
-              <Rout>
+              <Routes>
                 <Route path="/" element={<SidebarLayout/>}>
                   <Route path="/sign-up" element={<Register />} />
                   <Route path="/login" element={<Login />} /> 
                 </Route>
-                
-               <Route path="/">
-                  <Route path="/admin" element={
-                      <ProtectedRoute>
-                        <AdminBoard />
-                      </ProtectedRoute>
-                    }
-                  >
-                  <Route path="user" element={  
-                    <ProtectedRoute>
-                      <ListUser />
-                    </ProtectedRoute>
-                    } 
-                  >
-                  </Route>
-                </Route>
-                
-               
-               </Route>
-               
-                <Route path="/user" element={
-                   <ProtectedRoute >
-                     <UserBoard/>
-                   </ProtectedRoute>
-                  } 
-                />                 
-              </Rout>
+                             
+              </Routes>
             </div>       
           </div>
+          <Routes>
+              
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <SidebarAdmin />
+            </ProtectedRoute>
+          }>
+          
+          <Route path="user/list" element={  
+            <ProtectedRoute>
+              <UserList />
+            </ProtectedRoute>
+            } 
+          >
+          </Route>
+        
+       
+       </Route>
+       
+        <Route path="/user" element={
+           <ProtectedRoute >
+             <UserBoard/>
+           </ProtectedRoute>
+          } 
+        />  
+          
+          </Routes>
         </Router>
     );
 };

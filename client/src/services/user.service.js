@@ -6,16 +6,16 @@ class UserService {
     return http.get("/user/all");
   };
   
-  getUser = () => {
-    return http.get("/user/:id");
+  getUser = (id) => {
+    return http.get("/user/id");
   };
   
   updateUser = () => {
-    return http.put("/user/update/:id");
+    return http.put("/user/update/id");
   };
   
-  deleteUser = () => {
-    return http.delete("/user/delete/:id");
+  deleteUser = (id) => {
+    return http.delete(`/user/delete/${id}`);
   };
 }
 export default new UserService();
