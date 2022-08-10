@@ -1,9 +1,11 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("energymdb", "postgres", "123", {
+const sequelize = new Sequelize("d64ai0bil7bkqr", "ihkdysdwgqlwki", "48fa146fe1b1b95f1104cd432bcce6ce9d12cadf9c66d1516386022db6b6930a", {
   host: "energym-point-prod.herokuapp.com",
   dialect: "postgres",
+  protocol: "postgres",
+  port: 5432,
   operatorsAliases: false,
   /* pool: {
     max: dbConfig.pool.max,
