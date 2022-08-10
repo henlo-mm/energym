@@ -20,12 +20,12 @@ export default function UserList() {
 
     const columns = [
         { label: "id", id: "id", hidden: true },
-        { label: "Name",  id: 'first_name'},
-        { label: "Last name",  id: 'last_name' },
-        { label: "Document Type", id: "document_type" },
-        { label: "Document Number", id: "document_number" },
-        { label: "Birthdate", id: "birth_date" },
-        { label: "Role", id: "role_id", format: (value) => {
+        { label: "Nombre",  id: 'first_name'},
+        { label: "Apellido",  id: 'last_name' },
+        { label: "Tipo de Documento", id: "document_type" },
+        { label: "Número de Documento", id: "document_number" },
+        { label: "Fecha de Nacimiento", id: "birth_date" },
+        { label: "Rol", id: "role_id", format: (value) => {
             if (value === 1 ) {
             return "Cliente"
             }else if (value === 2){
@@ -34,7 +34,7 @@ export default function UserList() {
             return "Administrador"
             }
         } },
-        { label: "email", id: "email" }
+        { label: "Correo", id: "email" }
     ];
 
     const [data, setData] = useState([]);

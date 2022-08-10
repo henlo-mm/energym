@@ -84,4 +84,5 @@ db.set.belongsTo(db.exercise, {
 });
 
 /* db.users.sync({ force: true }) */
+
 module.exports = db;
