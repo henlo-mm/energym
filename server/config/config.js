@@ -19,7 +19,7 @@ module.exports = {
     "username": "root",
     "password": null,
     "database": "DATABASE_URL",
-    "host": "localhost",
+    "host": "energym-point-prod.herokuapp.com",
     "dialect": "postgres"
   }
 }
