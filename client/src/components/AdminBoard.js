@@ -47,6 +47,7 @@ const AdminBoard = () => {
 
 
   return (
+    
     <Container maxWidth="xl" sx={{ padding: '0!important' }}>
       <AppBar style={{ backgroundColor: "#ffffff"}}   position="sticky">
         <Container maxWidth="lg">
@@ -210,7 +211,7 @@ const AdminBoard = () => {
         </Container>
       </AppBar>
     </Container>
-    
+   
     
   );
 };

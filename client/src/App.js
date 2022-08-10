@@ -17,11 +17,12 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ListUser from './components/ListUser';
 import SidebarAdmin from './components/SidebarAdmin';
 import UserList from './components/UserList';
+import Admin from './components/Admin';
+import Home from './components/Home';
 
 
 function App() {
 
-  const isLoggedIn = localStorage.getItem("token");
     return (
         <Router>
           <ToastContainer />
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/" element={<SidebarLayout/>}>
                   <Route path="/sign-up" element={<Register />} />
                   <Route path="/login" element={<Login />} /> 
+                  <Route index={true} element={ <Home /> } />
                 </Route>
                              
               </Routes>
@@ -51,8 +53,12 @@ function App() {
             } 
           >
           </Route>
+          <Route index={true} element={  
+              <Admin />
+            } 
+          >
+          </Route>
         
-       
        </Route>
        
         <Route path="/user" element={

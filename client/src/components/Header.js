@@ -8,6 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import '../styles/header.css';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -38,7 +39,7 @@ const ResponsiveAppBar = () => {
   return (
     <Container maxWidth="xl" sx={{ padding: '0!important' }}>
       <AppBar style={{ backgroundColor: "#ffffff"}}   position="sticky">
-        <Container maxWidth="lg">
+        <Container maxWidth="xl">
           <Toolbar disableGutters>
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             <IconButton sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
@@ -107,7 +108,7 @@ const ResponsiveAppBar = () => {
                 ))} */}
                 <MenuItem>
                   <Button
-                    sx={{ my: 2, color: '#50007F'}}
+                    sx={{ my: 2, color: '#50007F', fontWeight: 'bold' }}
                     href="/sign-up"
                   >
                     REGISTRARSE
@@ -116,9 +117,9 @@ const ResponsiveAppBar = () => {
                 <MenuItem>
                   <Button
                     href="/login"
-                    variant="outlined"
+                    variant="contained"
                     color="secondary"
-                    sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+                    sx={{ my: 1 }}
                   >
                     INGRESAR
                   </Button>
@@ -156,7 +157,7 @@ const ResponsiveAppBar = () => {
               ))} */}
               <MenuItem>
                   <Button
-                    sx={{ my: 2, color: '#50007F'}}
+                    sx={{ my: 2, color: '#50007F', fontWeight: 'bold'}}
                     href="/sign-up"
                   >
                     REGISTRARSE
@@ -164,10 +165,10 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
                 <MenuItem>
                   <Button
-                    variant="outlined"
-                    color="secondary"
+                    variant="contained"
+                    className="login-button"
                     href="/login"
-                    sx={{ my: 1, color: '#50007F',   borderRadius: '20px', borderColor: '#50007F', borderWidth: "2px"}}
+                    sx={{ my: 1 }}
                   >
                     INGRESAR
                   </Button>
