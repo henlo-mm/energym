@@ -73,6 +73,8 @@ exports.signUp = async (req, res) => {
         const token = jwt.sign({ id: user.id }, process.env.secret, {
           expiresIn: 1800, // 30 min
         });
+
+        console.log(token)
     
         const role = await user.getRole();
       
