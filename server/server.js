@@ -29,7 +29,7 @@ if(process.env.NODE_ENV === 'production') {
   require("./routes/instructor.routes")(app);
   require("./routes/home.routes")(app);
   
-
+  app.use(express.urlencoded({ extended: true }));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
   })
@@ -37,6 +37,14 @@ if(process.env.NODE_ENV === 'production') {
 
 }
 app.use(express.urlencoded({ extended: true }));
+
+require("./routes/user.routes")(app);
+require("./routes/auth.routes")(app);
+require("./routes/exercise-type.routes")(app);
+require("./routes/exercise.routes")(app);
+require("./routes/set.routes")(app);
+require("./routes/instructor.routes")(app);
+require("./routes/home.routes")(app);
 
 app.use(
   cookieSession({
