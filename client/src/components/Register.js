@@ -9,9 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import '../styles/register.css';
 import AuthUser from "../services/auth.service";
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ErrorMessage } from "@hookform/error-message";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -61,8 +58,6 @@ export default function Register() {
   });
  
   const [submittedData, setSubmittedData] = React.useState({});
-
-
   const onSubmit = (data) => {
 
     setSubmittedData(data);
@@ -77,6 +72,8 @@ export default function Register() {
         email: data.email,
         password: data.password,
       };
+
+      console.log(datas)
      
       AuthUser.create(datas)
         .then(response => {
@@ -93,14 +90,13 @@ export default function Register() {
             password: response.data.password,
           
           });
+          console.log(response.data)
         
         })
         .catch(e => {
           console.log(e);
       });
    }
-
-   console.log(getValues())
    React.useEffect(() => {
     if (formState.isSubmitSuccessful) {
       reset({   
@@ -117,7 +113,6 @@ export default function Register() {
       });
     }
   }, [formState, submittedData, reset]);
-  console.log(getValues())
 
 
 return (
@@ -133,6 +128,8 @@ return (
                       alt="The house from the offer."
                       src={require('../resources/images/register.png')}
                   />
+                  <h4 className="main-text-2">REGISTRARSE EN ENERGYM POINT</h4>
+                  <p className="secondary-text-register">Rellene todos los campos del formulario con la información solicitada para habilitar el siguiente paso y continuar con el proceso de registro</p>
                 </Paper>
               </Grid>
               <Grid item xs={6}  style={{ width: '100%' }}>
@@ -153,7 +150,6 @@ return (
                       >
                         <Grid className="input-r">
                           <TextField
-                           
                             label="Primer nombre"
                             fullWidth
                             size="small"
@@ -167,7 +163,6 @@ return (
                           />
                           <TextField
                             fullWidth
-                           
                             label="Segundo nombre"
                             size="small"
                             {...register("middle_name", { required: 'Este campo es requerido'})}
@@ -182,7 +177,7 @@ return (
                      
                         <Grid className="input-r">
                           <TextField
-                            c
+                            name="last_name"
                             label="Primer apellido"
                             size="small"
                             fullWidth
@@ -195,7 +190,6 @@ return (
                             render={({ message }) => <p className="danger">{message}</p>}
                           />
                           <TextField
-                           
                             label="Segundo apellido"
                             size="small"
                             fullWidth
@@ -215,7 +209,6 @@ return (
                               select
                               fullWidth
                               defaultValue=""
-                              
                               label="Tipo de documento"
                               size="small"
                               name="document_type"
@@ -241,29 +234,16 @@ return (
                             render={({ message }) => <p className="danger">{message}</p>}
                           />
                         </Grid>
-                        <Grid className="input-r">    
-                          <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <Controller
-                              name="birth_date"
-                              control={control}
-                              defaultValue={new Date()}
-                              render={({ field: { ref, ...rest } }) => (
-                                  <DatePicker
-                                    disableFuture
-                                    label="Fecha de nacimiento"
-                                    openTo="year"
-                                    views={['year', 'month', 'day']}
-                                    {...register("birth_date")}
-                                    renderInput={(params) => <TextField fullWidth size="small"  {...params}
-                                  />}
-                                  {...rest} 
-                              />
-                              )}
-                            />
-                            
-                          </LocalizationProvider>
+                        <Grid className="input-r">  
+                          <TextField   
+                            size="small" 
+                            type="date" 
+                            {...register("birth_date")} 
+                            fullWidth 
+                          /> 
+                          
                         </Grid>            
-                        <Grid >
+                        <Grid className="input-r">
                           <TextField
                             type="email"
                             label="Correo electrónico"

@@ -25,22 +25,27 @@ exports.signUp = async (req, res) => {
     };
   
     const user = await User.create(users)
+    
       if (req.body.roles) {
+        console.log(req.body.roles)
+        
         const roles = await Role.findAll({
           where: {
-            name: {
-              [Op.or]: req.body.roles,
+            id: {
+              [Op.eq]: req.body.roles,
             },
           },
         });
+      
   
-        const result = user.setRoles(roles);
+        const result = user.setRole(req.body.roles);
         if (result) res.send({ message: "User registered successfully!" });
       } else {
         // user has role = 1
-        const result = user.setRoles([1]);
+        const result = user.setRole([1]);
         if (result) res.send({ message: "User registered successfully!" });
       }
+
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
@@ -66,27 +71,26 @@ exports.signUp = async (req, res) => {
           res.status(400).json({ error : "Invalid Password" });
         }
         const token = jwt.sign({ id: user.id }, config.secret, {
-          expiresIn: 86400, // 24 hours
+          expiresIn: 1800, // 30 min
         });
     
-        let authorities = [];
-        const roles = await user.getRoles();
-        for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE_" + roles[i].name.toUpperCase());
-        }
-    
+        const role = await user.getRole();
+      
         req.session.token = token;
     
         return res.status(200).send({
           id: user.id,
           email: user.email,
-          roles: authorities,
+          role: role.id,
           token: token,
         });
       } catch (error) {
         return res.status(500).send({ message: error.message });
       }
       
+      
   };
+
+  
   
  

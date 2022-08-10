@@ -1,11 +1,11 @@
 require('dotenv').config();
-
+const { DB_HOST, DB_USERNAME, DB_PASSWORD } = process.env;
 module.exports = {
   "development": {
-    "username": "postgres", 
-    "password": "123", 
+    "username": DB_USERNAME, 
+    "password": DB_PASSWORD, 
     "database": "energymdb", 
-    "host": "localhost",
+    "host": DB_HOST,
     "dialect": "postgres"
   },
   "test": {

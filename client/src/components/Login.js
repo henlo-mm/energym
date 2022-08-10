@@ -11,7 +11,8 @@ import CardContent from '@mui/material/CardContent';
 import '../styles/login.css';
 import Button from '@mui/material/Button';
 import CardHeader from '@mui/material/CardHeader';
-import { FaLock } from "react-icons/fa";
+import InputAdornment from '@mui/material/InputAdornment';
+import { FaLock, FaUserCircle  } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthUser from "../services/auth.service";
@@ -28,7 +29,6 @@ export default function Login() {
     });
 
     const navigate = useNavigate();
-    
 
     function onSubmit(data) {
 
@@ -44,23 +44,20 @@ export default function Login() {
                     user
                 });
             
-                let role = response.roles;
-                //let token = response.token;
-                if (role.toString() === "ROLE_USER") {
-
-                    /* toast.success("login Successfully", {
-                        position: toast.POSITION.TOP_CENTER
-                    }); */
-                   // localStorage.setItem('token', token);
-                  
+                let role = response.role;
+               
+                if (role === 1) {         
                     navigate("/user");
-                    
-                }else if(role.toString() === "ROLE_ADMIN"){
+                }else if(role === 2){
+                    navigate("/admin");
+
+                }else if(role === 3){
+                    navigate("/admin");
 
                 }else{
                     console.log(":(")
                    
-            }     
+            }    
     
         }).catch(e => {
                 console.log(e)
@@ -110,10 +107,15 @@ export default function Login() {
                                         
                                             <Grid  className="input">
                                                 <TextField
-                                                     
+                                                    InputProps={{
+                                                    startAdornment: (
+                                                        <InputAdornment position="start">
+                                                        <FaUserCircle />
+                                                        </InputAdornment>
+                                                    ),
+                                                    }} 
                                                     type="email"     
                                                     label="Correo"
-                                                   
                                                     name="email"
                                                     fullWidth
                                                     {...register("email")}
@@ -121,11 +123,18 @@ export default function Login() {
                                             </Grid>
                                             <Grid  className="input">
                                                 <TextField
-                                                    fullWidth                    
+                                                    InputProps={{
+                                                        startAdornment: (
+                                                            <InputAdornment position="start">
+                                                            <FaLock />
+                                                            </InputAdornment>
+                                                        ),
+                                                    }}       
                                                     label="Contraseña" 
                                                     type="password" 
                                                     name="password"
                                                     {...register("password")}
+                                                    fullWidth 
                                                 />
                                                 {/* <p className="text2"> 
                                                 <FaLock />

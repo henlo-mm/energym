@@ -11,6 +11,18 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+
+if(process.env.NODE_ENV === 'production') {
+
+  app.use(express.static(path.join(__dirname, '../client/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  })
+}else {
+
+}
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
@@ -40,6 +52,11 @@ app.get("/api", (req, res) => {
 
 require("./routes/user.routes")(app);
 require("./routes/auth.routes")(app);
+require("./routes/exercise-type.routes")(app);
+require("./routes/exercise.routes")(app);
+require("./routes/set.routes")(app);
+require("./routes/instructor.routes")(app);
+require("./routes/home.routes")(app);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

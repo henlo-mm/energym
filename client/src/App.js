@@ -7,7 +7,6 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import Dashboard from './components/Dashboard';
-import AdminBoard from './components/AdminBoard';
 import SidebarLayout from './components/SidebarLayout';
 import UserBoard from './components/UserBoard';
 import AuthUser from "./services/auth.service";
@@ -15,36 +14,61 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EventBus from "./common/EventBus";
 import ProtectedRoute from './components/ProtectedRoute';
+import ListUser from './components/ListUser';
+import SidebarAdmin from './components/SidebarAdmin';
+import UserList from './components/UserList';
+import Admin from './components/Admin';
+import Home from './components/Home';
+
 
 function App() {
 
-  const isLoggedIn = localStorage.getItem("token");
     return (
         <Router>
           <ToastContainer />
           <div className='page-container'>
             <div className='content-wrapper'>
               <Routes>
-              <Route path="/" element={<SidebarLayout/>}>
+                <Route path="/" element={<SidebarLayout/>}>
                   <Route path="/sign-up" element={<Register />} />
                   <Route path="/login" element={<Login />} /> 
+                  <Route index={true} element={ <Home /> } />
                 </Route>
-                <Route path="/admin" element={
-                    <ProtectedRoute >
-                      <AdminBoard />
-                    </ProtectedRoute>
-                  }
-                 />
-                <Route path="/user" element={
-                   <ProtectedRoute >
-                     <UserBoard/>
-                    
-                   </ProtectedRoute>
-                  } 
-                />                 
+                             
               </Routes>
             </div>       
           </div>
+          <Routes>
+              
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <SidebarAdmin />
+            </ProtectedRoute>
+          }>
+          
+          <Route path="user/list" element={  
+            <ProtectedRoute>
+              <UserList />
+            </ProtectedRoute>
+            } 
+          >
+          </Route>
+          <Route index={true} element={  
+              <Admin />
+            } 
+          >
+          </Route>
+        
+       </Route>
+       
+        <Route path="/user" element={
+           <ProtectedRoute >
+             <UserBoard/>
+           </ProtectedRoute>
+          } 
+        />  
+          
+          </Routes>
         </Router>
     );
 };

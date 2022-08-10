@@ -1,21 +1,21 @@
 import http from "../http-common";
 import authHeader from "./auth-header";
-class UserDataService {
+class UserService {
 
-  getPublicContent = () => {
-    return http.get("/test/all");
+  getAllUser = () => {
+    return http.get("/user/all");
   };
   
-  getUserBoard = () => {
-    return http.get("/test/user", { headers: authHeader() });
+  getUser = (id) => {
+    return http.get("/user/id");
   };
   
-  getModeratorBoard = () => {
-    return http.get("/test/mod", { headers: authHeader() });
+  updateUser = () => {
+    return http.put("/user/update/id");
   };
   
-  getAdminBoard = () => {
-    return http.get("/test/admin", { headers: authHeader() });
+  deleteUser = (id) => {
+    return http.delete(`/user/delete/${id}`);
   };
 }
-export default new UserDataService();
+export default new UserService();

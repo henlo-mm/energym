@@ -8,7 +8,7 @@ module.exports = {
       updatedAt: new Date()
     }], {});
     await queryInterface.bulkInsert('roles', [{
-      name: 'moderator',
+      name: 'instructor',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

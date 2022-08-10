@@ -1,4 +1,4 @@
-const users = require("../controllers/users.controller.js");
+const user = require("../controllers/users.controller.js");
 const { authJwt } = require("../middleware");
 
 module.exports = app => {
@@ -11,21 +11,17 @@ module.exports = app => {
     next();
   });
 
-  app.get("/api/test/all", users.allAccess);
 
-  app.get("/api/test/user",
-    [authJwt.verifyToken],
-   users.userBoard
-  );
+  app.post("/api/user/create", user.createUser);
 
-  app.get("/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-   users.moderatorBoard
-  );
+  app.get("/api/user/all", user.findAllUsers);
 
-  app.get("/api/test/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-   users.adminBoard
-  );
+  app.post("/api/user/:id", user.findOneUser);
 
-  };
+  app.put("/api/user/update/:id", user.updateUser);
+
+  app.delete("/api/user/delete/:id", user.deleteUser);
+  
+  app.delete("/api/user/delete/", user.deleteAllUsers);
+
+};

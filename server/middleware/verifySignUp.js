@@ -1,7 +1,7 @@
 const db = require("../models");
-const ROLES = db.ROLES;
+const Role = db.role;
 const User = db.users;
-
+const Op = db.Sequelize.Op;
 checkDuplicateUsernameOrEmail = async (req, res, next) => {
   try {
     
@@ -29,8 +29,18 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
 
 checkRolesExisted = (req, res, next) => {
   if (req.body.roles) {
+    console.log(req.body.roles)
     for (let i = 0; i < req.body.roles.length; i++) {
-      if (!ROLES.includes(req.body.roles[i])) {
+      const roles = Role.findAll({
+        where: {
+          id: {
+            [Op.eq]: req.body.roles,
+          },
+        },
+      });
+      
+      
+      if (!roles) {
         res.status(400).send({
           message: "Failed! Role does not exist = " + req.body.roles[i]
         });
