@@ -25,7 +25,7 @@ if(process.env.NODE_ENV === 'production') {
 
 }
 app.use(express.urlencoded({ extended: true }));
-console.log(path.join(__dirname, 'client/build'))
+
 app.use(
   cookieSession({
     name: "henlo-session",
