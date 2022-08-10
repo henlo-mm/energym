@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://energym-point-prod.herokuapp.com/api",
   headers: {
     "Content-type": "application/json"
   }
