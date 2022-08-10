@@ -1,12 +1,19 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
+const { PG_HOST, DB_NAME, PG_USERNAME, PG_PASSWORD } = process.env
 
-const sequelize = new Sequelize("d64ai0bil7bkqr", "ihkdysdwgqlwki", "48fa146fe1b1b95f1104cd432bcce6ce9d12cadf9c66d1516386022db6b6930a", {
-  host: "ec2-44-206-137-96.compute-1.amazonaws.com",
+const sequelize = new Sequelize( DB_NAME, PG_USERNAME, PG_PASSWORD, {
+  host: PG_HOST,
   dialect: "postgres",
-  protocol: "postgres",
-  port: 5432,
-  operatorsAliases: false,
+  logging: false,
+  ...(process.env.NODE_ENV === 'production' && {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  }),
   /* pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
