@@ -2,7 +2,7 @@ const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize("energymdb", "postgres", "123", {
-  host: "https://energym-point-prod.herokuapp.com",
+  host: "energym-point-prod.herokuapp.com",
   dialect: "postgres",
   operatorsAliases: false,
   /* pool: {
