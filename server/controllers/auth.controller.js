@@ -64,6 +64,7 @@ exports.signUp = async (req, res) => {
         })
        
       }
+      console.log("token")
 
         const password_valid = await bcrypt.compare(req.body.password,user.password);
 
