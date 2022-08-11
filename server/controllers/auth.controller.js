@@ -71,14 +71,14 @@ exports.signUp = async (req, res) => {
         if (!password_valid) {
           res.status(400).json({ error : "Invalid Password" });
         }
-       /*  const token = jwt.sign({ id: user.id }, process.env.secret, {
+        /* const token = jwt.sign({ id: user.id }, process.env.secret, {
           expiresIn: 1800, // 30 min
         });
 
   
-        const role = await user.getRole();
-      
+        
         req.session.token = token; */
+        const role = await user.getRole();
     
         return res.status(200).send({
           id: user.id,
