@@ -64,26 +64,25 @@ exports.signUp = async (req, res) => {
         })
        
       }
-     
 
         const password_valid = await bcrypt.compare(req.body.password,user.password);
 
         if (!password_valid) {
           res.status(400).json({ error : "Invalid Password" });
         }
-        const token = jwt.sign({ id: user.id }, {
+        const token = jwt.sign({ id: user.id }, config.secret, {
           expiresIn: 1800, // 30 min
         });
-
-  
-        
-        req.session.token = token;
+    
         const role = await user.getRole();
+      
+        req.session.token = token;
     
         return res.status(200).send({
           id: user.id,
           email: user.email,
           role: role.id,
+          token: token,
         });
       } catch (error) {
         return res.status(500).send({ message: error.message });
