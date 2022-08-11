@@ -14,9 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import '../styles/user_board.css';
 import AuthUser from "../services/auth.service";
 import { useNavigate } from 'react-router-dom';
-import { Grid } from '@mui/material';
-
-const pages = ['Rutinas'];
 
 
 const UserBoard = () => {
@@ -105,11 +102,11 @@ const UserBoard = () => {
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
+              <MenuItem>
+                <Button className="items"  href="/user/set/list">
+                  RUTINAS
+                </Button>
+              </MenuItem>
               </Menu>
             </Box>
             <IconButton sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
@@ -139,15 +136,11 @@ const UserBoard = () => {
               ENERGYM POINT
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  className="items"
-                >
-                  {page}
+              <MenuItem>
+                <Button className="items"  href="/user/set/list">
+                  RUTINAS
                 </Button>
-              ))}
+              </MenuItem>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
@@ -188,24 +181,7 @@ const UserBoard = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Grid container>
-        <Container maxWidth="xl" className="container-login" > 
-          <Grid container>
-              <Grid 
-                item 
-                align="center" 
-                xs={ 12 }
-              > 
-                <Box
-                  component="img"
-                  className="img-user"
-                  alt="The house from the offer."
-                  src={require('../resources/images/user_dash.png')}
-                /> 
-              </Grid>        
-          </Grid>
-        </Container>
-      </Grid>
+     
     </div>
   );
 };

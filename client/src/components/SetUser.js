@@ -8,44 +8,26 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import SetService from "../services/set.service";
 import UserService from "../services/user.service";
-import { Button, Grid } from '@mui/material';
+import ExerciseService from "../services/exercise.service";
+import { Grid } from '@mui/material';
 import { Container } from '@mui/system';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import CreateUser from './CreateUser';
 
+export default function SetUser() {
 
-export default function UserList() {
-
-    const columns = [
-        { label: "id", id: "id", hidden: true },
-        { label: "Nombre",  id: 'first_name'},
-        { label: "Apellido",  id: 'last_name' },
-        { label: "Tipo de Documento", id: "document_type" },
-        { label: "Número de Documento", id: "document_number" },
-        { label: "Fecha de Nacimiento", id: "birth_date" },
-        { label: "Rol", id: "role_id", format: (value) => {
-            if (value === 1 ) {
-            return "Cliente"
-            }else if (value === 2){
-            return  "Instructor"
-            }else if (value === 3) {
-            return "Administrador"
-            }
-        } },
-        { label: "Correo", id: "email" }
-    ];
+   
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        userData();
+        setsData();
+
     }, []);
     
-    const userData = async () => {
+    const setsData = async () => {
     
-        await UserService.getAllUser()
+        await SetService.getAllSet()
             .then(response => {
             
             setData(response.data)
@@ -68,30 +50,80 @@ export default function UserList() {
         setPage(0);
     };
 
-    const handleRowDelete = (oldData) => {
+    const [instructor, setInstructor] = useState([]);
+
+    useEffect(() => {
+        instructorData();
+    }, []);
+    
+    const instructorData = async () => {
+    
+        await UserService.getAllInstructor()
+            .then(response => {
+                setInstructor(response.data)
+            
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
         
-        UserService.deleteUser(oldData.id)
-            .then(res => {
-                const del = data.filter(dat => oldData.id !== dat.id);
-                setData(del);
+
+    const [exercise, setExercise] = useState([]);
+
+    useEffect(() => {
+        ExerciseData();
+    }, []);
+    
+    const ExerciseData = async () => {
+    
+        await ExerciseService.getAllExercise()
+            .then(response => {
+                setExercise(response.data)
             
             })
-            .catch(error => {
-            
-            })
-    }
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const columns = [
+        { label: "Repeticiones",  id: 'numReps'},
+        { label: "Peso",  id: 'weight' },
+        { label: "Nombre", id: "name" },
+        { label: "Series", id: "series" },
+        { label: "Instructor", id: "instructor_id", format: (value) => {
+            if (typeof value == 'number' ) {
+
+                let fullName = "";
+
+                instructor.map((option) => (
+                fullName =  option.first_name + ' ' + option.last_name
+                ))
+                
+                return fullName;
+            }
+        } },
+        { label: "Ejercicio", id: "exercise_id", format: (val) => {
+            if (typeof val == 'number' ) {
+
+                let name = "";
+
+                exercise.map((option) => (
+                name =  option.name
+                ))
+                
+                return name;
+            }
+        } }
+    ];
 
   return (
     <Grid container>
       <Container maxWidth="xl" className="container-login" > 
-        <Grid container direction={'column'} >
-
-          <Grid item xs={2} align="right" sx={{ marginTop: '100px' }}>
-          
-                <CreateUser />
-          </Grid>
-
-            <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '50px' }}>
+        <Grid container direction={'column'}>
+            <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '200px' }}>
                 <TableContainer sx={{ maxHeight: 440 }}>
                     <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -105,9 +137,6 @@ export default function UserList() {
                             {column.label}
                             </TableCell>
                         ))}
-                            <TableCell>
-                                Actions 
-                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -128,14 +157,6 @@ export default function UserList() {
                                 );
                                 })}
 
-                                <TableCell>
-                                    <Button aria-label="delete" onClick={ () => handleRowDelete(dat)}>
-                                        <DeleteIcon />
-                                    </Button>
-                                    <Button aria-label="edit" >
-                                        <EditIcon />
-                                    </Button>
-                                </TableCell>
                             </TableRow>
                             
                             );

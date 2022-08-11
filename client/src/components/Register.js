@@ -1,5 +1,5 @@
 import React from 'react'
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -40,7 +40,7 @@ export default function Register() {
     formState,
     formState: { errors },
     getValues,
-    control
+
   } = useForm({
       defaultValues: {
       id: null,
@@ -73,7 +73,6 @@ export default function Register() {
         password: data.password,
       };
 
-      console.log(datas)
      
       AuthUser.create(datas)
         .then(response => {
@@ -90,7 +89,7 @@ export default function Register() {
             password: response.data.password,
           
           });
-          console.log(response.data)
+    
         
         })
         .catch(e => {

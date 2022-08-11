@@ -2,14 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import '../styles/register.css';
-import AuthUser from "../services/auth.service";
-import { Link } from '@mui/material';
+import UserService from "../services/user.service";
 
 
 const currencies = [
@@ -24,6 +22,20 @@ const currencies = [
     {
       value: 'P',
       label: 'Pasaporte',
+    },
+];
+const roles = [
+    {
+      value: 1,
+      label: 'Cliente',
+    },
+    {
+      value: 2,
+      label: 'Instructor',
+    },
+    {
+      value: 3,
+      label: 'Administrador',
     },
 ];
 
@@ -50,12 +62,12 @@ export default function CreateUser() {
     handleSubmit,
     reset,
     formState,
-    formState: { errors },
     getValues,
-    control
+   
   } = useForm({
       defaultValues: {
       id: null,
+      role_id: "",
       first_name: "",
       middle_name: "", 
       last_name: "", 
@@ -70,10 +82,12 @@ export default function CreateUser() {
   });
  
   const [submittedData, setSubmittedData] = React.useState({});
+
   const onSubmit = (data) => {
 
     setSubmittedData(data);
       var datas = {
+        role_id: data.role_id,
         first_name: data.first_name,
         middle_name: data.middle_name, 
         last_name: data.last_name,
@@ -84,13 +98,12 @@ export default function CreateUser() {
         email: data.email,
         password: data.password,
       };
-
-      console.log(datas)
      
-      AuthUser.create(datas)
+      UserService.createUser(datas)
         .then(response => {
           handleSubmit({
             id: response.data.id,
+            role_id: response.data.role_id,
             first_name: response.data.first_name,
             middle_name: response.data.middle_name, 
             last_name: response.data.last_name, 
@@ -102,7 +115,6 @@ export default function CreateUser() {
             password: response.data.password,
           
           });
-          console.log(response.data)
         
         })
         .catch(e => {
@@ -136,9 +148,29 @@ export default function CreateUser() {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box 
-            sx={style} 
-            component="form"  
-            >
+          onSubmit={handleSubmit(onSubmit)}
+          sx={style} 
+          component="form"  
+        >
+            <Grid className="input-r">
+              <TextField
+                  select
+                  label="Rol"
+                  fullWidth
+                  size="small"
+                  name="role_id"
+                  {...register("role_id",  { required: 'Este campo es requerido'})}
+              >
+              {roles.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                {option.label}
+                </MenuItem>
+            ))}
+              </TextField>
+              
+              
+                                      
+            </Grid> 
             <Grid className="input-r">
                 <TextField
                     label="Primer nombre"

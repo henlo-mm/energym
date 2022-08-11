@@ -14,10 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import '../styles/admin_board.css';
 import AuthUser from "../services/auth.service";
 import { useNavigate } from 'react-router-dom';
-import { Grid } from '@mui/material';
-
-//const pages = ['Usuarios', 'Rutinas'];
-
 
 const AdminBoard = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -118,7 +114,7 @@ const AdminBoard = () => {
                 </Button>
               </MenuItem>
               <MenuItem>
-                <Button className="items">
+                <Button className="items"  href="/admin/set/list">
                   RUTINAS
                 </Button>
               </MenuItem>
@@ -166,7 +162,7 @@ const AdminBoard = () => {
                 </Button>
               </MenuItem>
               <MenuItem>
-                <Button className="items">
+                <Button className="items"  href="/admin/set/list">
                   RUTINAS
                 </Button>
               </MenuItem>

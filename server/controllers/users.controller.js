@@ -10,6 +10,7 @@ exports.createUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
 
     const users = {
+        role_id: req.body.role_id,
         first_name: req.body.first_name,
         middle_name: req.body.middle_name,
         last_name: req.body.last_name,
@@ -24,26 +25,9 @@ exports.createUser = async (req, res) => {
         contract_type: req.body.contract_type,
     };
   
-    const user = await User.create(users)
+    await User.create(users);
+    res.send({ message: "User registered successfully!" });
     
-      if (req.body.role_id) {
-      
-       /*  const roles = await Role.findAll({
-          where: {
-            id: {
-              [Op.eq]: req.body.roles,
-            },
-          },
-        });
-       */
-  
-        const result = user.setRole(req.body.role_id);
-        if (result) res.send({ message: "User registered successfully!" });
-      } else {
-        // user has role = 1
-        const result = user.setRole([1]);
-        if (result) res.send({ message: "User registered successfully!" });
-      }
 
     } catch (error) {
       res.status(500).send({ message: error.message });
@@ -153,6 +137,43 @@ exports.deleteAllUsers = (req, res) => {
       });
     });
 };
+
+exports.findAllClient = (req, res) => {
+  
+  User.findAll({
+     where: { 
+      role_id: 
+      { [Op.eq]: 1 } 
+    }
+    })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Users."
+      });
+    });
+};
+exports.findAllInstructor = (req, res) => {
+  User.findAll({
+    where: { 
+     role_id: 
+     { [Op.eq]: 2 } 
+   }
+   })
+   .then(data => {
+     res.send(data);
+   })
+   .catch(err => {
+     res.status(500).send({
+       message:
+         err.message || "Some error occurred while retrieving Users."
+     });
+   });
+};
+  
 /*   
 exports.findAllMembership = (req, res) => {
   User.findAll({ where: { has_membership: true } })

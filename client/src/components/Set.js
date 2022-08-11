@@ -8,44 +8,30 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import UserService from "../services/user.service";
+import SetService from "../services/set.service";
 import { Button, Grid } from '@mui/material';
 import { Container } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import CreateUser from './CreateUser';
+import CreateSet from './CreateSet';
+import ExerciseService from '../services/exercise.service';
+import UserService from '../services/user.service';
 
 
-export default function UserList() {
+export default function Set() {
 
-    const columns = [
-        { label: "id", id: "id", hidden: true },
-        { label: "Nombre",  id: 'first_name'},
-        { label: "Apellido",  id: 'last_name' },
-        { label: "Tipo de Documento", id: "document_type" },
-        { label: "Número de Documento", id: "document_number" },
-        { label: "Fecha de Nacimiento", id: "birth_date" },
-        { label: "Rol", id: "role_id", format: (value) => {
-            if (value === 1 ) {
-            return "Cliente"
-            }else if (value === 2){
-            return  "Instructor"
-            }else if (value === 3) {
-            return "Administrador"
-            }
-        } },
-        { label: "Correo", id: "email" }
-    ];
+ 
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        userData();
+        setsData();
+
     }, []);
     
-    const userData = async () => {
+    const setsData = async () => {
     
-        await UserService.getAllUser()
+        await SetService.getAllSet()
             .then(response => {
             
             setData(response.data)
@@ -55,6 +41,110 @@ export default function UserList() {
                 console.log(e);
             });
     };
+
+    const [instructor, setInstructor] = useState([]);
+
+    useEffect(() => {
+        instructorData();
+    }, []);
+    
+    const instructorData = async () => {
+    
+        await UserService.getAllInstructor()
+            .then(response => {
+                setInstructor(response.data)
+            
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+
+    const [exercise, setExercise] = useState([]);
+
+    useEffect(() => {
+        ExerciseData();
+    }, []);
+    
+    const ExerciseData = async () => {
+    
+        await ExerciseService.getAllExercise()
+            .then(response => {
+                setExercise(response.data)
+            
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        clientData();
+    }, []);
+
+    const clientData = async () => {
+
+        await UserService.getAllClient()
+            .then(response => {
+            
+            
+            setUser(response.data)
+            
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+
+    const columns = [
+        { label: "id", id: "id", hidden: true },
+        { label: "Repeticiones",  id: 'numReps'},
+        { label: "Peso",  id: 'weight' },
+        { label: "Nombre", id: "name" },
+        { label: "Series", id: "series" },
+        { label: "Usuario", id: "user_id", format: (value) => {
+            if (typeof value == 'number' ) {
+    
+                let fullName = "";
+    
+                user.map((option) => (
+                   fullName =  option.first_name + ' ' + option.last_name
+                ))
+                
+                return fullName;
+            }
+        } },
+        { label: "Instructor", id: "instructor_id", format: (value) => {
+            if (typeof value == 'number' ) {
+    
+                let fullName = "";
+    
+                instructor.map((option) => (
+                   fullName =  option.first_name + ' ' + option.last_name
+                ))
+                
+                return fullName;
+            }
+        } },
+        { label: "Ejercicio", id: "exercise_id", format: (val) => {
+            if (typeof val == 'number' ) {
+    
+                let name = "";
+                
+                exercise.map((option) => (
+                  name =  option.name
+                ))
+                
+                return name;
+            }
+        } }
+    ];
+
+
     const [page, setPage] = useState(0);
 
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -70,7 +160,7 @@ export default function UserList() {
 
     const handleRowDelete = (oldData) => {
         
-        UserService.deleteUser(oldData.id)
+        SetService.deleteSet(oldData.id)
             .then(res => {
                 const del = data.filter(dat => oldData.id !== dat.id);
                 setData(del);
@@ -88,7 +178,7 @@ export default function UserList() {
 
           <Grid item xs={2} align="right" sx={{ marginTop: '100px' }}>
           
-                <CreateUser />
+                <CreateSet />
           </Grid>
 
             <Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '50px' }}>

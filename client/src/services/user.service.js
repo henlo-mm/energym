@@ -1,9 +1,19 @@
 import http from "../http-common";
-import authHeader from "./auth-header";
 class UserService {
+
+  createUser = (data) => {
+    return http.post("/user/create", data);
+  };
 
   getAllUser = () => {
     return http.get("/user/all");
+  };
+
+  getAllClient = () => {
+    return http.get("/user/allClient");
+  };
+  getAllInstructor = () => {
+    return http.get("/user/allInstructor");
   };
   
   getUser = (id) => {

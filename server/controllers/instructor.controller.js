@@ -27,7 +27,6 @@ exports.createInstructor = async (req, res) => {
     const instructors = await Instructor.create(instructor)
     
       if (req.body.role_id) {
-        console.log(req.body.roles)
         
         const roles = await Role.findAll({
           where: {

@@ -1,18 +1,11 @@
 import React from 'react'
-import { useForm } from "react-hook-form";
-import { useNavigate } from 'react-router-dom'
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import '../styles/home.css';
 import Button from '@mui/material/Button';
-import CardHeader from '@mui/material/CardHeader';
-import { FaLock, FaUserCircle  } from "react-icons/fa";
 import 'react-toastify/dist/ReactToastify.css';
-import Link from '@mui/material/Link';
 
 export default function Home() {
    

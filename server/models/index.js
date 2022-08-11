@@ -1,7 +1,7 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 const { PG_HOST, DB_NAME, PG_USERNAME, PG_PASSWORD } = process.env
-
+/* 
 const sequelize = new Sequelize( DB_NAME, PG_USERNAME, PG_PASSWORD, {
   host: PG_HOST,
   dialect: "postgres",
@@ -14,6 +14,19 @@ const sequelize = new Sequelize( DB_NAME, PG_USERNAME, PG_PASSWORD, {
       },
     },
   }),
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+});
+ */
+
+const sequelize = new Sequelize("energymdb", "postgres", "123", {
+  host: "localhost",
+  dialect: "postgres",
+  operatorsAliases: false,
   /* pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -27,7 +40,6 @@ const sequelize = new Sequelize( DB_NAME, PG_USERNAME, PG_PASSWORD, {
     idle: 10000
   }
 });
-
 const db = {};
 
 db.Sequelize = Sequelize;

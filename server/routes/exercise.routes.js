@@ -22,6 +22,8 @@ module.exports = app => {
 
     app.delete("/api/exercise/delete/:id", exercise.deleteExercise);
 
+    app.delete("/api/exercise/delete/", exercise.deleteAllExercise);
+
     
 
     /* app.post("/api/auth/signout", auth.signout); */

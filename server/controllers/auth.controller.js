@@ -27,7 +27,6 @@ exports.signUp = async (req, res) => {
     const user = await User.create(users)
     
       if (req.body.roles) {
-        console.log(req.body.roles)
         
         const roles = await Role.findAll({
           where: {

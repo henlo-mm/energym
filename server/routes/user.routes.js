@@ -16,6 +16,10 @@ module.exports = app => {
 
   app.get("/api/user/all", user.findAllUsers);
 
+  app.get("/api/user/allClient", user.findAllClient);
+
+  app.get("/api/user/allInstructor", user.findAllInstructor);
+
   app.post("/api/user/:id", user.findOneUser);
 
   app.put("/api/user/update/:id", user.updateUser);
