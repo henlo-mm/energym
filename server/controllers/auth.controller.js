@@ -64,7 +64,7 @@ exports.signUp = async (req, res) => {
         })
        
       }
-      console.log("token")
+     
 
         const password_valid = await bcrypt.compare(req.body.password,user.password);
 
@@ -75,8 +75,7 @@ exports.signUp = async (req, res) => {
           expiresIn: 1800, // 30 min
         });
 
-        console.log(token)
-    
+  
         const role = await user.getRole();
       
         req.session.token = token;
