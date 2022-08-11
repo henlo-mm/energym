@@ -76,7 +76,7 @@ exports.signUp = async (req, res) => {
     
         const role = await user.getRole();
       
-        req.session.token = token;
+       // req.session.token = token;
     
         return res.status(200).send({
           id: user.id,
