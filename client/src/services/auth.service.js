@@ -8,10 +8,10 @@ class AuthUser {
     login (data) {
         return http.post("/auth/signin", data)
         .then((response) => {
-           console.log(response.data.token)
+           /* console.log(response.data.token)
             if (response.data.token) {
                 localStorage.setItem("token", response.data.token);
-            }
+            } */
         return response.data;
         });
     };
